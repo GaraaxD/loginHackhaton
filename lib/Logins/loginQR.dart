@@ -14,52 +14,93 @@ class _LoginQRState extends State<LoginQR> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        body: Stack(
-          children: [
-            Container(
-                width: double.infinity,
-                height: double.infinity,
-                padding: EdgeInsets.all(10),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  children: [
-                    Card(
-                      elevation: 10.0,
-                      child: Container(
-                        padding: EdgeInsets.all(8),
-                        height: MediaQuery.of(context).size.height * 0.3,
-                        width: MediaQuery.of(context).size.width * 0.8,
-                        child: SingleChildScrollView(
-                          child: Text(
-                            codigoQR,
-                            style: TextStyle(
-                                fontSize: 18,
-                                color: (!estadoQR)
-                                    ? Colors.black26
-                                    : Colors.black),
+        backgroundColor: Color(0xff586286),
+        body: Container(
+          padding: const EdgeInsets.only(
+            left: 37,
+            right: 38,
+            top: 33,
+            bottom: 200,
+          ),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  SizedBox(
+                    width: 100,
+                    height: 63,
+                    child: Text(
+                      "Login \npor QR\n",
+                      style: TextStyle(
+                        color: Colors.black,
+                        fontSize: 25,
+                      ),
+                    ),
+                  ),
+                  SizedBox(width: 100),
+                  SizedBox(
+                    child: Icon(
+                      Icons.qr_code_outlined,
+                      size: 75,
+                    ),
+                  ),
+                ],
+              ),
+              SizedBox(height: 233),
+              Center(
+                child: Container(
+                  width: 319,
+                  height: 101,
+                  child: Row(
+                    mainAxisSize: MainAxisSize.min,
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      ElevatedButton(
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: Color(0xff26387a),
+                          shape: RoundedRectangleBorder(
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(50))),
+                        ),
+                        onPressed: () => _navegarAlEscanner(context),
+                        child: Text(
+                          'Escanear QR',
+                          style: TextStyle(
+                            fontSize: 40,
+                            fontWeight: FontWeight.bold,
                           ),
                         ),
                       ),
-                    ),
-                    ElevatedButton(
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: Colors.indigo,
-                        shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.all(Radius.circular(20))),
-                      ),
-                      onPressed: () => _navegarAlEscanner(context),
+                    ],
+                  ),
+                ),
+              )
+            ],
+          ),
+        )
+
+        /*Card(
+                  elevation: 10.0,
+                  child: Container(
+                    padding: EdgeInsets.all(8),
+                    height: MediaQuery.of(context).size.height * 0.3,
+                    width: MediaQuery.of(context).size.width * 0.8,
+                    child: SingleChildScrollView(
                       child: Text(
-                        'Escanear QR',
+                        codigoQR,
                         style: TextStyle(
-                            fontSize: 20,
-                            fontWeight: FontWeight.bold,
-                        ),
+                            fontSize: 18,
+                            color: (!estadoQR) ? Colors.black26 : Colors.black),
                       ),
                     ),
-                  ],
-                )),
-          ],
-        ));
+                  ),
+                ),*/
+        );
   }
 
   _navegarAlEscanner(BuildContext context) async {
@@ -77,6 +118,3 @@ class _LoginQRState extends State<LoginQR> {
     });
   }
 }
-
-
-
