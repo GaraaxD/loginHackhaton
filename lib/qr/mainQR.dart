@@ -14,7 +14,9 @@ class _QrBarcodeState extends State<mainQR> {
   @override
   Widget build(BuildContext context) {
     return new Scaffold(
+      backgroundColor: Color(0xff586286),
       appBar: AppBar(
+        backgroundColor: Color(0xff586286),
         leading: IconButton(
           icon: Icon(Icons.close),
           onPressed: () => Navigator.of(context).pop(),
@@ -53,6 +55,7 @@ class _QrBarcodeState extends State<mainQR> {
 
   Widget _escanner(BuildContext context) {
     return Card(
+        color: Color(0xff586286),
         elevation: 2.0,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(8.0),
@@ -65,36 +68,39 @@ class _QrBarcodeState extends State<mainQR> {
               height: MediaQuery.of(context).size.height - 150,
               child: _camState
                   ? QRBarScannerCamera(
-                onError: (context, error) => Text(
-                  error.toString(),
-                  style: TextStyle(color: Colors.red),
-                ),
-                qrCodeCallback: (code) {
-                  _qrCallback(code!);
-                },
-              )
+                      onError: (context, error) => Text(
+                        error.toString(),
+                        style: TextStyle(color: Colors.red),
+                      ),
+                      qrCodeCallback: (code) {
+                        _qrCallback(code!);
+                      },
+                    )
                   : Center(
-                child: SizedBox(
-                    width: 80.0,
-                    height: 80.0,
-                    child: CircularProgressIndicator(
-                      backgroundColor: Colors.red[100],
-                      strokeWidth: 10.0,
-                    )),
-              ),
+                      child: SizedBox(
+                          width: 80.0,
+                          height: 80.0,
+                          child: CircularProgressIndicator(
+                            backgroundColor: Colors.red[100],
+                            strokeWidth: 10.0,
+                          )),
+                    ),
             ),
             Container(
                 width: double.infinity,
                 decoration: BoxDecoration(
-                  color: Colors.indigo,
+                  borderRadius: BorderRadius.circular(50),
+                  color: Color(0xff26387a),
                 ),
                 padding: const EdgeInsets.all(10.0),
                 margin: const EdgeInsets.only(bottom: 8),
                 child: Center(
                   child: Text(
-                    'Ubique el codigo QR',
+                    'Ubique el código QR en la cámara',
                     style: TextStyle(
-                        fontWeight: FontWeight.bold),
+                        fontWeight: FontWeight.bold,
+                        color: Colors.white,
+                        fontSize: 20),
                   ),
                 ))
           ],
