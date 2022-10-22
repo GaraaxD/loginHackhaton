@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:hackhatonlogin/Logins/loginNormal.dart';
 import 'package:hackhatonlogin/RouteGenerator.dart';
 
 void main() {
@@ -13,7 +12,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      initialRoute: '/vibracion',
+      initialRoute: '/sp',
       onGenerateRoute: RouteGenerator.generateRoute,
     );
   }

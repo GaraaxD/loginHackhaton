@@ -12,7 +12,7 @@ class _LoginNormalState extends State<LoginNormal> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: Colors.grey[300],
+        backgroundColor: Colors.blue[700],
         body: Center(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,

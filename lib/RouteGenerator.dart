@@ -3,6 +3,8 @@ import 'package:hackhatonlogin/Logins/loginNormal.dart';
 import 'package:hackhatonlogin/Logins/loginQR.dart';
 import 'package:hackhatonlogin/PageLoading.dart';
 import 'package:hackhatonlogin/Logins/loginVibracion.dart';
+import 'package:hackhatonlogin/SplashScreen/SplashScreen.dart';
+import 'package:hackhatonlogin/SignUp/SignUp.dart';
 
 class RouteGenerator {
   static Route<dynamic> generateRoute(RouteSettings settings) {
@@ -17,6 +19,10 @@ class RouteGenerator {
         return MaterialPageRoute(builder: (context) => LoginQR());
       case '/vibracion':
         return MaterialPageRoute(builder: (context) => LoginVibracion());
+      case '/sp':
+        return MaterialPageRoute(builder: (context) => SplashScreen());
+      case '/rg':
+        return MaterialPageRoute(builder: (context) => SignUp());
       default:
         return _errorRoute();
     }

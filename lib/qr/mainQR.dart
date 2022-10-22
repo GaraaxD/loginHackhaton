@@ -16,7 +16,7 @@ class _QrBarcodeState extends State<mainQR> {
     return new Scaffold(
       backgroundColor: Color(0xff586286),
       appBar: AppBar(
-        backgroundColor: Color(0xff586286),
+        backgroundColor: Color(0xff586286), //BUTTON COLOR GRIS
         leading: IconButton(
           icon: Icon(Icons.close),
           onPressed: () => Navigator.of(context).pop(),
@@ -90,7 +90,7 @@ class _QrBarcodeState extends State<mainQR> {
                 width: double.infinity,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(50),
-                  color: Color(0xff26387a),
+                  color: Color(0xff26387a), //COLOR BUTTON
                 ),
                 padding: const EdgeInsets.all(10.0),
                 margin: const EdgeInsets.only(bottom: 8),
