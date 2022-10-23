@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:vibration/vibration.dart';
 import 'package:audioplayers/audioplayers.dart';
+import 'package:hold_down_button/hold_down_button.dart';
 
 class LoginVibracion extends StatefulWidget {
   const LoginVibracion({super.key});
@@ -11,6 +12,7 @@ class LoginVibracion extends StatefulWidget {
 
 class _LoginVibracionState extends State<LoginVibracion> {
   String textoEjemplo = "";
+  int t = 0;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -37,7 +39,7 @@ class _LoginVibracionState extends State<LoginVibracion> {
                       color: Colors.white),
                   child: Center(
                     child: Text(
-                      textoEjemplo,
+                      t.toString(),
                       style: TextStyle(
                         fontSize: 35,
                         fontWeight: FontWeight.bold,
@@ -56,23 +58,26 @@ class _LoginVibracionState extends State<LoginVibracion> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
-                      SizedBox(
-                        width: 250,
-                        height: 400,
-                        child: ElevatedButton(
-                          style: ElevatedButton.styleFrom(
-                            backgroundColor: Colors.white,
-                            shape: RoundedRectangleBorder(
-                                borderRadius:
-                                    BorderRadius.all(Radius.circular(50))),
-                          ),
-                          onPressed: () => _testNuevo(context),
-                          child: Text(
-                            'Presionar',
-                            style: TextStyle(
+                      HoldDownButton(
+                        onHoldDown: _testNuevo,
+                        child: SizedBox(
+                          width: 230,
+                          height: 204,
+                          child: ElevatedButton(
+                            style: ElevatedButton.styleFrom(
+                              backgroundColor: Color(0xff26387a),
+                              shape: RoundedRectangleBorder(
+                                  borderRadius:
+                                      BorderRadius.all(Radius.circular(50))),
+                            ),
+                            onPressed: () => _testNuevo(),
+                            child: Text(
+                              'Presionar',
+                              style: TextStyle(
                                 fontSize: 40,
                                 fontWeight: FontWeight.bold,
-                                color: Color.fromARGB(255, 29, 51, 112)),
+                              ),
+                            ),
                           ),
                         ),
                       ),
@@ -85,19 +90,20 @@ class _LoginVibracionState extends State<LoginVibracion> {
         ));
   }
 
-  _testNuevo(BuildContext context) async {
+  void _testNuevo() async {
     final player = AudioPlayer();
     await player.play(UrlSource(
         'https://mdslab.com.mx/wp-content/uploads/2022/10/SD_ALERT_24-mp3cut.net-1.mp3'));
     setState(() {
-      if (textoEjemplo.length < 8) {
-        Vibration.vibrate();
+      Vibration.vibrate(amplitude: 500);
 
-        this.textoEjemplo = this.textoEjemplo + '*';
-      }
-      if (textoEjemplo.length == 8) {
+      t++;
+      /*if (textoEjemplo.length < 8) {
+       
+      }*/
+      /*if (textoEjemplo.length == 8) {
         Navigator.of(context).pushNamed('/', arguments: '');
-      }
+      }*/
     });
   }
 }
