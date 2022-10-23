@@ -1,5 +1,10 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:passwordfield/passwordfield.dart';
+import 'package:http/http.dart' as http;
+
+import '../home.dart';
 
 const List<String> listSexo = <String>['Masculino', 'Femenino', 'Otro'];
 void main() => runApp(const SignUp());
@@ -62,6 +67,7 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
               //FIELD
               padding: const EdgeInsets.all(10),
               child: TextField(
+                controller: fnameController,
                 decoration: const InputDecoration(
                   border: OutlineInputBorder(),
                   labelText: 'Nombre',
@@ -72,6 +78,7 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
               //FIELD
               padding: const EdgeInsets.all(10),
               child: TextField(
+                controller: lFnameController,
                 decoration: const InputDecoration(
                   border: OutlineInputBorder(),
                   labelText: 'Apellido Paterno',
@@ -82,6 +89,7 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
               //FIELD
               padding: const EdgeInsets.all(10),
               child: TextField(
+                controller: lMnameController,
                 decoration: const InputDecoration(
                   border: OutlineInputBorder(),
                   labelText: 'Apellido Materno',
@@ -92,6 +100,7 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
               //FIELD
               padding: const EdgeInsets.all(10),
               child: TextField(
+                controller: cpController,
                 decoration: const InputDecoration(
                   border: OutlineInputBorder(),
                   labelText: 'Codigo Postal',
@@ -102,6 +111,7 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
               //FIELD
               padding: const EdgeInsets.all(10),
               child: TextField(
+                controller: Controller,
                 decoration: const InputDecoration(
                   border: OutlineInputBorder(),
                   labelText: 'Fecha de nacimiento',
@@ -168,9 +178,47 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
                 padding: const EdgeInsets.fromLTRB(10, 0, 10, 0),
                 child: ElevatedButton(
                   child: const Text('SignUp'),
-                  onPressed: () {},
+                  onPressed: () {
+                    login();
+                  },
                 )),
           ],
         ));
+  }
+
+  Future<void> login() async {
+    if (dropdownValue.isNotEmpty &&
+        fnameController.text.isNotEmpty &&
+        lFnameController.text.isNotEmpty &&
+        lMnameController.text.isNotEmpty &&
+        cpController.text.isNotEmpty &&
+        Controller.text.isNotEmpty) {
+      Map data = {
+        'id': 3,
+        'nombre': fnameController.text,
+        "apellidopa": lFnameController.text,
+        "apellidoma": lMnameController.text,
+        "cp": cpController.text,
+        "fecha": Controller.text,
+        "sexo": dropdownValue,
+        "idusuario": 3
+      };
+      String body = json.encode(data);
+      var response = await http.post(
+          Uri.parse(
+              "https://qcbhe1w262.execute-api.us-east-2.amazonaws.com/default/registro"),
+          headers: {"Content-Type": "application/json"},
+          body: body);
+      if (response.statusCode == 200) {
+        Navigator.push(
+            context, MaterialPageRoute(builder: (context) => home()));
+      } else {
+        ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(content: Text("Error, contraseña o usuario incorrecto")));
+      }
+    } else {
+      ScaffoldMessenger.of(context)
+          .showSnackBar(SnackBar(content: Text("Error, campos en blanco")));
+    }
   }
 }
