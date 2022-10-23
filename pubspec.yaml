@@ -43,6 +43,9 @@ dependencies:
   http: ^0.13.5
   provider: ^6.0.4
   hold_down_button: ^1.0.0
+  json_serializable: ^6.5.3
+  build_runner: ^2.3.2
+  json_annotation: ^4.7.0
 
 
 dev_dependencies:
