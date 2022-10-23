@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:passwordfield/passwordfield.dart';
 
 const List<String> listSexo = <String>['Masculino', 'Femenino', 'Otro'];
 void main() => runApp(const SignUp());
@@ -110,11 +111,31 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
             Container(
               //FIELD
               padding: const EdgeInsets.all(10),
-              child: TextField(
-                decoration: const InputDecoration(
-                  border: OutlineInputBorder(),
-                  labelText: 'Sexo',
+              child: PasswordField(
+                color: Colors.blue,
+                passwordConstraint: r'[0-9]',
+                inputDecoration: PasswordDecoration(),
+                hintText: 'Password',
+                border: PasswordBorder(
+                  border: OutlineInputBorder(
+                    borderSide: BorderSide(
+                      color: Colors.blue.shade100,
+                    ),
+                    borderRadius: BorderRadius.circular(12),
+                  ),
+                  focusedBorder: OutlineInputBorder(
+                    borderSide: BorderSide(
+                      color: Colors.blue.shade100,
+                    ),
+                    borderRadius: BorderRadius.circular(12),
+                  ),
+                  focusedErrorBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(12),
+                    borderSide:
+                        BorderSide(width: 2, color: Colors.red.shade200),
+                  ),
                 ),
+                errorMessage: 'Esta vacio el campo',
               ),
             ), // FIELD
             Container(
@@ -148,7 +169,7 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
                 child: ElevatedButton(
                   child: const Text('SignUp'),
                   onPressed: () {},
-                ))
+                )),
           ],
         ));
   }
