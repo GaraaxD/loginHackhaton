@@ -16,12 +16,12 @@ class _LoginVibracionState extends State<LoginVibracion> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: Color(0xff586286),
+        backgroundColor: Color.fromARGB(255, 29, 51, 112),
         body: Container(
           padding: const EdgeInsets.only(
             left: 37,
             right: 38,
-            top: 33,
+            top: 100,
             bottom: 150,
           ),
           child: Column(
@@ -29,30 +29,7 @@ class _LoginVibracionState extends State<LoginVibracion> {
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  SizedBox(
-                    width: 140,
-                    height: 100,
-                    child: Text(
-                      "Login \npor Vibración\n",
-                      style: TextStyle(
-                        color: Colors.black,
-                        fontSize: 25,
-                      ),
-                    ),
-                  ),
-                  SizedBox(width: 100),
-                  SizedBox(
-                    child: Icon(
-                      Icons.remove_red_eye,
-                      size: 75,
-                    ),
-                  ),
-                ],
-              ),
-              SizedBox(height: 150),
+              SizedBox(height: 200),
               Center(
                 child: Container(
                   width: 268,
