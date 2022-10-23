@@ -93,7 +93,7 @@ class _QrBarcodeState extends State<mainQR> {
                   color: Color(0xff26387a), //COLOR BUTTON
                 ),
                 padding: const EdgeInsets.all(10.0),
-                margin: const EdgeInsets.only(bottom: 8),
+                margin: const EdgeInsets.only(bottom: 5),
                 child: Center(
                   child: Text(
                     'Ubique el código QR en la cámara',

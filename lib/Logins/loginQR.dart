@@ -1,5 +1,9 @@
+import 'dart:convert';
+import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
 import 'package:hackhatonlogin/qr/mainQR.dart';
+
+import '../home.dart';
 
 class LoginQR extends StatefulWidget {
   const LoginQR({Key? key}) : super(key: key);
@@ -112,9 +116,30 @@ class _LoginQRState extends State<LoginQR> {
     );
     setState(() {
       if (result != null) {
-        this.codigoQR = result;
+        login(result);
         this.estadoQR = true;
       }
     });
+  }
+
+  Future<void> login(String result) async {
+    if (result.isNotEmpty) {
+      String body = json.encode(result);
+      var response = await http.post(
+          Uri.parse(
+              "https://wkw7pruewa.execute-api.us-east-2.amazonaws.com/devLogin"),
+          headers: {"Content-Type": "application/json"},
+          body: body);
+      if (response.statusCode == 200) {
+        Navigator.push(
+            context, MaterialPageRoute(builder: (context) => home()));
+      } else {
+        ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(content: Text("Error, contraseña o usuario incorrecto")));
+      }
+    } else {
+      ScaffoldMessenger.of(context)
+          .showSnackBar(SnackBar(content: Text("Error, campos en blanco")));
+    }
   }
 }
